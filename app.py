@@ -3,7 +3,7 @@ import cv2
 import numpy as np
 import streamlit as st
 from sklearn import metrics
-from xgboost import XGBClassifier
+from sklearn.neighbors import KNeighborsClassifier
 from sklearn.model_selection import train_test_split
 from sklearn.metrics import accuracy_score, precision_score, recall_score, f1_score, roc_auc_score
 from sklearn.metrics import confusion_matrix
@@ -57,11 +57,11 @@ st.write(f'Total number of images: {num_images}')
 # Split the data into training and testing sets
 X_train, X_test, y_train, y_test = train_test_split(data, labels, test_size=0.2, random_state=42)
 
-# Initialize the XGBoost classifier
-clf = XGBClassifier()
+# Train a k-NN model on the training set
+clf = KNeighborsClassifier(n_neighbors=K)
 
 
-# Train the XGBoost classifier
+# Train the  k-NN model
 clf.fit(X_train, y_train)
 
 
